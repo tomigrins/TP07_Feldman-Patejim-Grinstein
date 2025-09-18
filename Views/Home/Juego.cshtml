@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Juego";
+}
+
+
+<div id="palabra"></div>
+<div id="intentos"></div>
+
+<div class="abecedario">
+    <button onclick="insertarLetra('A')" class="letra">A</button>
+    <button onclick="insertarLetra('B')" class="letra">B</button>
+    <button onclick="insertarLetra('C')" class="letra">C</button>
+    <button onclick="insertarLetra('D')" class="letra">D</button>
+    <button onclick="insertarLetra('E')" class="letra">E</button>
+    <button onclick="insertarLetra('F')" class="letra">F</button>
+    <button onclick="insertarLetra('G')" class="letra">G</button>
+    <button onclick="insertarLetra('H')" class="letra">H</button>
+    <button onclick="insertarLetra('I')" class="letra">I</button>
+    <button onclick="insertarLetra('J')" class="letra">J</button>
+    <button onclick="insertarLetra('K')" class="letra">K</button>
+    <button onclick="insertarLetra('L')" class="letra">L</button>
+    <button onclick="insertarLetra('M')" class="letra">M</button>
+    <button onclick="insertarLetra('N')" class="letra">N</button>
+    <button onclick="insertarLetra('Ñ')" class="letra">Ñ</button>
+    <button onclick="insertarLetra('O')" class="letra">O</button>
+    <button onclick="insertarLetra('P')" class="letra">P</button>
+    <button onclick="insertarLetra('Q')" class="letra">Q</button>
+    <button onclick="insertarLetra('R')" class="letra">R</button>
+    <button onclick="insertarLetra('S')" class="letra">S</button>
+    <button onclick="insertarLetra('T')" class="letra">T</button>
+    <button onclick="insertarLetra('U')" class="letra">U</button>
+    <button onclick="insertarLetra('V')" class="letra">V</button>
+    <button onclick="insertarLetra('W')" class="letra">W</button>
+    <button onclick="insertarLetra('X')" class="letra">X</button>
+    <button onclick="insertarLetra('Y')" class="letra">Y</button>
+    <button onclick="insertarLetra('Z')" class="letra">Z</button>
+    <input type="text" name="palabra" placeholder="Arriesga palabra.." minlength="@palabras.Length" maxlength="@palabras.Length" id = "palabra">
+    <button onclick="arriesgarPalabra()">Arriesgar</button>
+</div>
+
+<script>
+    let palabraAAdivinar;
+    const palabra = "@ViewBag.Palabra";
+    const palabraSeparada;
+    let letrasUsadas;
+    let intentos = 0;
+</script>
