@@ -33,8 +33,11 @@
     <button onclick="insertarLetra('X')" class="letra">X</button>
     <button onclick="insertarLetra('Y')" class="letra">Y</button>
     <button onclick="insertarLetra('Z')" class="letra">Z</button>
-    <input type="text" name="palabra" placeholder="Arriesga palabra.." minlength="@palabras.Length" maxlength="@palabras.Length" id = "palabra">
-    <button onclick="arriesgarPalabra()">Arriesgar</button>
+</div>
+    <div class = "arriesga-container">
+        <input type="text" name="palabra" placeholder="Arriesga palabra.." minlength="@palabras.Length" maxlength="@palabras.Length" id = "palabra">
+        <button onclick="arriesgarPalabra()">Arriesgar</button>
+    </div>
 
     <div id="FINAL" style="display: none;">
         <form action='@Url.Action("FinJuego")' method="POST">
@@ -48,7 +51,7 @@
         </form>
     </div> 
     <!-- Despues terminar esto -->
-</div>
+
 
 <script>
     let palabraAAdivinar;
