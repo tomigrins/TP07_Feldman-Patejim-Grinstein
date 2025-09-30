@@ -45,8 +45,12 @@ function arriesgarPalabra(){
     const palabraArriesgada = document.getElementById('palabra');
     if (palabraArriesgada === palabra){
         alert("¡Ganaste en " + intentos +  "intentos!");
+        document.getElementById('intentos') = intentos;
+        document.getElementById('FINAL').style.display = "block";
     }
     else{
-        alert("¡Perdiste!");
+        alert("Esa no es");
+        intentos++;
+    
     }
 }

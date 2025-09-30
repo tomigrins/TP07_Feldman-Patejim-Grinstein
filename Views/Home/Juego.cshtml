@@ -2,7 +2,6 @@
     ViewData["Title"] = "Juego";
 }
 
-
 <div id="palabra"></div>
 <div id="intentos"></div>
 
@@ -36,12 +35,25 @@
     <button onclick="insertarLetra('Z')" class="letra">Z</button>
     <input type="text" name="palabra" placeholder="Arriesga palabra.." minlength="@palabras.Length" maxlength="@palabras.Length" id = "palabra">
     <button onclick="arriesgarPalabra()">Arriesgar</button>
+
+    <div id="FINAL" style="display: none;">
+        <form action='@Url.Action("FinJuego")' method="POST">
+            <input type="hidden" name="intentos" id="intentos">
+            <input type="submit" value="Finalizar">
+        </form>
+    </div>
+    <div id="PERDISTE" style="display: none;">
+        <form action='@Url.Action("Index")' method="POST">
+            <input type="submit" value="Volver">
+        </form>
+    </div> 
+    <!-- Despues terminar esto -->
 </div>
 
 <script>
     let palabraAAdivinar;
     const palabra = "@ViewBag.Palabra";
-    const palabraSeparada;
+    let palabraSeparada = '';
     let letrasUsadas;
     let intentos = 0;
 </script>
