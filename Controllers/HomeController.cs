@@ -15,6 +15,20 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewBag.Juego.jugadores = DevolverListaUsuarios();
         return View();
+    }
+
+    public IActionResult Comenzar(string name, int dificultad){
+        Juego juego = new Juego(); 
+        juego.LlenarListaPalabras();
+        juego.inicializarJuego(name, dificultad);
+        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(juego));
+
+    }
+    public IActionResult FinJuego(int intentos)
+    {
+        ViewBag.
+        return View("Index");
     }
 }

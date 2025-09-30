@@ -4,12 +4,13 @@ public class Juego{
     private List<Palabra> listaPalabra{get;private set;}
     private List<Usuario> jugadores{get; private set;}
     private Usuario jugadorActual{get; private set;}
+    public string PalabraActual {get; private set;}
 
-    public Juego(List<Palabra> listaPalabra, List<Usuario> jugadores, Usuario jugadorActual){
-        this.listaPalabra = new List<Palabra>();
-        this.jugadores = new List<Usuario>();
-        this.jugadorActual = jugadorActual;
+    public void inicializarJuego(string name, int dificultad){
+        jugadorActual = new Usuario(name, 0) 
+        palabraActual = CargarPalabra(dificultad)
     }
+
     private void LlenarListaPalabras(){
         listaPalabras.Add(new Palabra("sol", 1));
         listaPalabras.Add(new Palabra("luna", 1));
@@ -58,9 +59,7 @@ public class Juego{
         listaPalabras.Add(new Palabra("compromiso", 4));
         listaPalabras.Add(new Palabra("habilidad", 4));
     }
-    public void inicializarJuego(string usuario, int dificultad){
 
-    }
     private string CargarPalabra(int dificultad){
         List<Palabra> palabrasFiltradas = new List<Palabra>();
 
@@ -78,14 +77,16 @@ public class Juego{
         }
 
         Random random = new Random();
-        int indice = random.Next(palabrasFiltradas.Count);
+        int indice = random.Next(0,palabrasFiltradas.Count);
 
         return palabrasFiltradas[indice];
 
     }
+
     public void FinJuego(int cantidadIntentos){
         jugadorActual.cantidadIntentos=cantidadIntentos;
         jugadores.Add(jugadorActual);
+        jugadorActual = null;
     }
 
     public List<Usuario> DevolverListaUsuarios(){
