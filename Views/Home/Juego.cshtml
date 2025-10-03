@@ -3,7 +3,7 @@
 }
 
 <div id="palabra"></div>
-<div id="intentos"></div>
+<div id="intentos">Intentos erraddos (max 5)</div>
 
 <div class="abecedario">
     <button onclick="insertarLetra('A')" class="letra">A</button>
@@ -34,29 +34,26 @@
     <button onclick="insertarLetra('Y')" class="letra">Y</button>
     <button onclick="insertarLetra('Z')" class="letra">Z</button>
 </div>
-    <div class = "arriesga-container">
-        <input type="text" name="palabra" placeholder="Arriesga palabra.." minlength="@palabras.Length" maxlength="@palabras.Length" id = "palabra">
-        <button onclick="arriesgarPalabra()">Arriesgar</button>
-    </div>
+    <div class="arriesga-container">
+    <!-- Cambié el id a inputPalabra para no confundir con el div de palabra -->
+    <input type="text" id="inputPalabra" placeholder="Arriesga palabra.." minlength="@ViewBag.Palabra.Length" maxlength="@ViewBag.Palabra.Length">
+    <button onclick="arriesgarPalabra()">Arriesgar</button>
+</div>
 
-    <div id="FINAL" style="display: none;">
-        <form action='@Url.Action("FinJuego")' method="POST">
-            <input type="hidden" name="intentos" id="intentos">
-            <input type="submit" value="Finalizar">
-        </form>
-    </div>
-    <div id="PERDISTE" style="display: none;">
-        <form action='@Url.Action("Index")' method="POST">
-            <input type="submit" value="Volver">
-        </form>
-    </div> 
-    <!-- Despues terminar esto -->
+<div id="FINAL" style="display: none;">
+    <form action='@Url.Action("FinJuego")' method="POST">
+        <input type="hidden" name="intentos" id="hiddenIntentos">
+        <input type="submit" value="Finalizar">
+    </form>
+</div>
 
+<div id="PERDISTE" style="display: none;">
+    <form action='@Url.Action("Index")' method="POST">
+        <input type="submit" value="Volver">
+    </form>
+</div>
 
+<script src="~/js/Script.js"></script>
 <script>
-    let palabraAAdivinar;
-    const palabra = "@ViewBag.Palabra";
-    let palabraSeparada = '';
-    let letrasUsadas;
-    let intentos = 0;
+    inicializarJuego("@ViewBag.Palabra");
 </script>

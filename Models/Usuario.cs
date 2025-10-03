@@ -1,12 +1,16 @@
 using Newtonsoft.Json;
-public static class Usuario{
-    [JsonProperty]
-    public string nombre{get; private set;}
-    [JsonProperty]
-    public int cantidadIntentos{get; private set;}
 
-    public Usuario(string nombre, int cantidadIntentos){
-        this.nombre = nombre;
-        this.cantidadIntentos = cantidadIntentos;
+public class Usuario
+{
+    [JsonProperty]
+    public string Nombre { get; private set; }
+
+    [JsonProperty]
+    public int CantidadIntentos { get; set; }
+
+    public Usuario(string nombre, int cantidadIntentos)
+    {
+        Nombre = nombre;
+        CantidadIntentos = cantidadIntentos;
     }
 }

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\TP07_Feldman-Patejim-Grinstein.props" />
+</Project>

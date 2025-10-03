@@ -1,56 +1,76 @@
-function inicializarJuego(palabra){
+let palabraAAdivinar;
+let palabraSeparada;
+let letrasAdivinadas;
+let letrasUsadas;
+let intentos = 0;
+let palabra;
+
+function inicializarJuego(palabraRecibida) {
+    palabra = palabraRecibida.toUpperCase();
     let cantLetras = palabra.length;
-    for (let i = 0; i < cantLetras; i++)
-    palabraAAdivinar = ["_"]
-    document.getElementById("palabra").innerHTML = palabraAAdivinar;
+
+    palabraAAdivinar = Array(cantLetras).fill("_");
+    letrasAdivinadas = Array(cantLetras).fill("_");
     palabraSeparada = palabra.split("");
-    for (let letra of palabra){
-        palabraSeparada.push(letra)
-    }
+    letrasUsadas = [];
+    intentos = 0;
+
+    actualizarPantalla();
 }
-function insertarLetra(letra){
+
+function actualizarPantalla() {
+    document.getElementById("palabra").innerHTML = letrasAdivinadas.join(" ");
+    document.getElementById("intentos").innerHTML = "Intentos: " + intentos;
+}
+
+function insertarLetra(letra) {
+    letra = letra.toUpperCase();
+
     if (letrasUsadas.includes(letra)) {
         alert("Ya usaste esa letra.");
         return;
     }
+
+    letrasUsadas.push(letra);
+
     if (palabraSeparada.includes(letra)) {
-        intentos++;
         for (let i = 0; i < palabraSeparada.length; i++) {
             if (palabraSeparada[i] === letra) {
                 letrasAdivinadas[i] = letra;
             }
-            if (!letrasAdivinadas.includes("_")) {
-                alert("¡Ganaste en " + intentos +  "intentos!");
-            }
-            else {
-                intentos++;
-                alert("Esa letra no está en la palabra.");
-            }    
+        }
+
+        if (!letrasAdivinadas.includes("_")) {
+            alert("¡Ganaste en " + intentos + " intentos!");
+            document.getElementById("hiddenIntentos").value = intentos;
+            document.getElementById("FINAL").style.display = "block";
+        }
+    } else {
+        intentos++;
+        if (intentos > 9) {
+            alert("¡Perdiste! La palabra era: " + palabra);
+            document.getElementById("PERDISTE").style.display = "block";
         }
     }
-        document.getElementById("palabra").innerHTML = palabraAAdivinar;
-        document.getElementById("intentos").innerHTML = "Intentos: " + intentos;
-    // let letraEncontrada = -1
-    // letraEncontrada = palabraSeparada.find(palabraSeparada => palabraSeparada === letra);
-    // if(letraEncontrada = -1)
-    //     alert("Esa letra no esta en la palabra.");
-    //     letrasUsadas.push(letra);
-    // else{
-    //     alert("Esa se encuentra entre las letras de la palabra.");
-    //     intentos++;
-    //     letrasUsadas.push(letra);
-    //     }
+
+    actualizarPantalla();
 }
-function arriesgarPalabra(){
-    const palabraArriesgada = document.getElementById('palabra');
-    if (palabraArriesgada === palabra){
-        alert("¡Ganaste en " + intentos +  "intentos!");
-        document.getElementById('intentos') = intentos;
-        document.getElementById('FINAL').style.display = "block";
-    }
-    else{
+
+function arriesgarPalabra() {
+    const palabraArriesgada = document.getElementById('inputPalabra').value.toUpperCase();
+
+    if (palabraArriesgada === palabra) {
+        alert("¡Ganaste en " + intentos + " intentos!");
+        document.getElementById("hiddenIntentos").value = intentos;
+        document.getElementById("FINAL").style.display = "block";
+    } else {
         alert("Esa no es");
         intentos++;
-    
+        if (intentos > 9) {
+            alert("¡Perdiste! La palabra era: " + palabra);
+            document.getElementById("PERDISTE").style.display = "block";
+        }
     }
+
+    actualizarPantalla();
 }

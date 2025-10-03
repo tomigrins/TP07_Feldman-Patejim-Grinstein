@@ -1,7 +1,8 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <div class="inicio-container">
-<img src="/imagenes/SebaDominguez.png" alt="logo">
-<a href="@Url.Action("Juego", "Home")">Empezar</a>
+    <img src="/imagenes/SebaDominguez.png" alt="logo">
+    <a href="@Url.Action("Comenzar", "Home", new { name = "Jugador1", dificultad = 1 })">Empezar</a>
 </div>

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP07_Feldman_Patejim_Grinstein.Models;
 
@@ -15,20 +14,26 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.Juego.jugadores = DevolverListaUsuarios();
+        ViewBag.Jugadores = Juego.DevolverListaUsuarios();
         return View();
     }
 
-    public IActionResult Comenzar(string name, int dificultad){
-        Juego juego = new Juego(); 
+    public IActionResult Comenzar(string name, int dificultad)
+    {
+        var juego = new Juego();
         juego.LlenarListaPalabras();
-        juego.inicializarJuego(name, dificultad);
-        HttpContext.Session.SetString("Juego", Objeto.ObjectToString(juego));
+        juego.InicializarJuego(name, dificultad);
 
+        // Guarda el juego en sesión (requiere que hayas configurado AddSession en Program.cs)
+        HttpContext.Session.SetString("Juego", Objetos.ObjectToString(juego));
+
+        ViewBag.Palabra = juego.PalabraActual;
+
+        return View("Juego");
     }
+
     public IActionResult FinJuego(int intentos)
     {
-        ViewBag.
-        return View("Index");
+        return RedirectToAction("Index");
     }
 }
